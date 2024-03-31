@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Task 8 """
+"""adv task"""
 from models import storage
 from flask import Flask
 from flask import render_template
@@ -7,13 +7,14 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route("/states_list", strict_slashes=False)
-def states_list():
-    """Displays an HTML page with a list of all State objects in DBStorage.
-    States are sorted by name.
-    """
+@app.route("/hbnb", strict_slashes=False)
+def hbnb():
+    """Displays the main HBnB filters HTML page."""
     states = storage.all("State")
-    return render_template("7-states_list.html", states=states)
+    amenities = storage.all("Amenity")
+    places = storage.all("Place")
+    return render_template("100-hbnb.html",
+                           states=states, amenities=amenities, places=places)
 
 
 @app.teardown_appcontext
